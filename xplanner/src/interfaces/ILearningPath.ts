@@ -1,5 +1,5 @@
 // 6. Classe: LearningPath
-export { FinancialDimension, LearningLevel } from './types';
+import { FinancialDimension, LearningLevel } from './types';
 
 export interface LearningPath {
   id: string;
