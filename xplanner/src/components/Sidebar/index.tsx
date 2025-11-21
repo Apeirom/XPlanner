@@ -38,7 +38,7 @@ export function Sidebar() {
           const isActive = pathname?.startsWith(item.href);
 
           return (
-            <Link href={item.href} key={item.href} passHref legacyBehavior>
+            <Link href={item.href} key={item.href} >
               <S.NavItem $isActive={isActive}>
                 <Icon className="icon" />
                 <span className="label">{item.label}</span>
@@ -49,7 +49,7 @@ export function Sidebar() {
       </S.SidebarNav>
 
       <S.SidebarFooter>
-        <S.EcosystemButton>
+        <S.EcosystemButton href="https://www.xpi.com.br/" target="_blank" rel="noopener noreferrer">
           <Image
             src="/assets/xp-investimentos-logo.png"
             alt="XP Inc."

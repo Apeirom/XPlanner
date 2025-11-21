@@ -40,6 +40,10 @@ export const SidebarNav = styled.nav`
   flex-direction: column;
   gap: 0.75rem; // Espaçamento entre os itens
   flex: 1; // Ocupa o espaço disponível
+  a {
+    text-decoration: none;
+    color: inherit; /* Garante que o link não sobrescreva as cores do NavItem */
+  }
 `;
 
 // Prop para o estilo condicional do item ativo
@@ -47,13 +51,12 @@ interface NavItemProps {
   $isActive?: boolean;
 }
 
-export const NavItem = styled.a<NavItemProps>`
+export const NavItem = styled.div<NavItemProps>`
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  border-radius: var(--radius);
-  text-decoration: none;
+  border-radius: var(--radius-lg);
   font-weight: var(--font-weight-medium);
   font-size: var(--text-base);
   transition: all 0.2s ease;
@@ -93,18 +96,19 @@ export const SidebarFooter = styled.div`
   margin-top: auto; // Empurra para o final
 `;
 
-export const EcosystemButton = styled.button`
+export const EcosystemButton = styled.a`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.9rem;
   width: 100%;
-  border-radius: var(--radius);
+  border-radius: var(--radius-md );
   background-color: rgba(255, 255, 255, 0.05); // Fundo translúcido sutil
   border: 1px solid var(--border);
   color: var(--muted-foreground);
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
+  text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease;
 
