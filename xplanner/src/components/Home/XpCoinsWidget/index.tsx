@@ -4,10 +4,10 @@ import { Coins, Zap } from 'lucide-react';
 import * as S from './styles';
 
 interface XpCoinsWidgetProps {
-  balanceBtc: number;
+  balanceBtc?: number;
 }
 
-export function XpCoinsWidget({ balanceBtc = 0.005 }: XpCoinsWidgetProps) {
+export function XpCoinsWidget({ balanceBtc = 0.00 }: XpCoinsWidgetProps) {
   return (
     <S.Container>
       <S.WidgetContent>

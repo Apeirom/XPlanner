@@ -1,3 +1,4 @@
+// src/components/Home/PlayLearnSection/index.tsx
 'use client';
 
 import { Gamepad2, Zap, Swords, ArrowRight } from 'lucide-react';
@@ -9,16 +10,16 @@ export function PlayLearnSection() {
       <S.Header>
         <S.HeaderTitle>
           <Gamepad2 className="icon" />
-          Play & Learn
+          Jogar & Aprender
         </S.HeaderTitle>
         <S.XpTag>+XP</S.XpTag>
       </S.Header>
       <S.Description>
-        Test your financial knowledge and compete with friends!
+        Teste seus conhecimentos financeiros e compita com amigos!
       </S.Description>
 
       <S.GamesGrid>
-        {/* Card do Jogo 1: Money Millionaire (Tema Dourado XP) */}
+        {/* Card do Jogo 1: Milionário do Dinheiro */}
         <S.GameCard $variant="gold">
           <S.CardHeader>
             <S.IconWrapper $variant="gold">
@@ -26,16 +27,16 @@ export function PlayLearnSection() {
             </S.IconWrapper>
             <S.TypeBadge>Solo</S.TypeBadge>
           </S.CardHeader>
-          <S.GameTitle>Money Millionaire</S.GameTitle>
+          <S.GameTitle>Milionário do Dinheiro</S.GameTitle>
           <S.GameDescription>
-            Answer questions and win up to 1 million points! Like &quot;Show do Milhão&quot; but for finance.
+            Responda perguntas e ganhe até 1 milhão de pontos! Tipo &quot;Show do Milhão&quot;, mas de finanças.
           </S.GameDescription>
           <S.PlayButton $variant="gold">
-            Play Now <ArrowRight className="arrow" />
+            Jogar Agora <ArrowRight className="arrow" />
           </S.PlayButton>
         </S.GameCard>
 
-        {/* Card do Jogo 2: QuizBattle (Tema Azul/Roxo) */}
+        {/* Card do Jogo 2: Batalha de Quiz */}
         <S.GameCard $variant="blue">
           <S.CardHeader>
             <S.IconWrapper $variant="blue">
@@ -43,12 +44,12 @@ export function PlayLearnSection() {
             </S.IconWrapper>
             <S.TypeBadge>PvP</S.TypeBadge>
           </S.CardHeader>
-          <S.GameTitle>QuizBattle</S.GameTitle>
+          <S.GameTitle>Batalha de Quiz</S.GameTitle>
           <S.GameDescription>
-            Challenge your friends in real-time financial quizzes. Who&apos;s the smartest?
+            Desafie seus amigos em quizzes financeiros em tempo real. Quem é o mais esperto?
           </S.GameDescription>
           <S.PlayButton $variant="blue">
-            Challenge Friends <ArrowRight className="arrow" />
+            Desafiar Amigos <ArrowRight className="arrow" />
           </S.PlayButton>
         </S.GameCard>
       </S.GamesGrid>
