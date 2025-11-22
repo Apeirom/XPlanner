@@ -1,8 +1,13 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const CardContainer = styled.div`
+// 1. Adicionando prop para controle de hover
+interface CardContainerProps {
+  $isClickable?: boolean;
+}
+
+export const CardContainer = styled.div<CardContainerProps>`
   /* Estilo de card de vidro escuro padrão do projeto */
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -12,6 +17,17 @@ export const CardContainer = styled.div`
   align-items: center;
   gap: 2.5rem;
   backdrop-filter: blur(10px);
+  transition: all 0.3s ease; // Transição suave para o hover
+
+  /* 1. Aplica estilos de interatividade apenas se for clicável */
+  ${({ $isClickable }) => $isClickable && css`
+    cursor: pointer;
+    &:hover {
+      border-color: var(--primary); // Brilho dourado na borda
+      transform: translateY(-2px); // Leve elevação
+      box-shadow: 0 10px 20px -10px rgba(255, 199, 0, 0.15); // Sombra sutil
+    }
+  `}
 `;
 
 export const CircularProgressWrapper = styled.div`
@@ -23,8 +39,9 @@ export const CircularProgressWrapper = styled.div`
   transform: rotate(-90deg);
 `;
 
+// 3. A transição CSS que fará a animação funcionar
 export const ProgressCircle = styled.circle`
-  transition: stroke-dashoffset 1s ease-in-out;
+  transition: stroke-dashoffset 1.5s ease-in-out; // Aumentei um pouco o tempo para ficar mais suave
 `;
 
 export const ScoreContent = styled.div`
@@ -71,21 +88,33 @@ export const Description = styled.p`
 export const TagsWrapper = styled.div`
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap; // Garante que não quebre em telas menores
 `;
 
+// 2. CORREÇÃO DE ESTILO DAS TAGS
 const BaseTag = styled.div`
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600; // Aumentei um pouco o peso
+  
+  /* --- Flexbox para centralização perfeita --- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; // Remove espaçamento vertical extra
+  white-space: nowrap; // Evita quebra de linha dentro da tag
+  /* ----------------------------------------- */
 `;
 
 export const PointsTag = styled(BaseTag)`
   background-color: rgba(34, 197, 94, 0.1); // Verde translúcido
   color: #4ade80; // Verde claro
+  border: 1px solid rgba(34, 197, 94, 0.2); // Adicionei uma borda sutil para definição
 `;
 
 export const LevelTag = styled(BaseTag)`
   background-color: rgba(245, 158, 11, 0.1); // Laranja/Dourado translúcido
   color: #fbbf24; // Dourado claro
+  border: 1px solid rgba(245, 158, 11, 0.2); // Adicionei uma borda sutil
 `;

@@ -4,11 +4,18 @@
 
 export interface UserDataType {
   name: string;
-  score: number;
+  // Dados do Header
+  title: string; // Ex: "Novato Financeiro"
   level: number;
-  levelTitle: string; // Traduzido: "Money Rookie" -> "Novato Financeiro"
+  currentXP: number;
+  nextLevelXP: number;
+  streakDays: number;
+  avatarEmoji: string;
+  // Dados de Score e Finanças
+  hasCompletedQuiz: boolean; // <-- NOVA FLAG IMPORTANTE
+  score: number;
   pointsChanged: number;
-  btcBalance: number; // Movendo o saldo de BTC para cá também
+  btcBalance: number;
 }
 
 // Tipo para os itens da barra lateral direita
@@ -17,19 +24,25 @@ export interface QuickActionType {
   title: string;
   description: string;
   buttonText: string;
-  // Adicionamos uma variante para saber qual estilo de botão usar
   buttonVariant: 'primary' | 'secondary';
 }
 
 // --- Dados Mockados (Traduzidos) ---
 
 export const mockUserData: UserDataType = {
-  name: 'João',
-  score: 685,
-  level: 4,
-  levelTitle: 'Novato Financeiro',
+  name: 'Lucas Mena',
+  // Dados do Header
+  title: 'Novato Financeiro',
+  level: 3,
+  currentXP: 2340,
+  nextLevelXP: 3000,
+  streakDays: 7,
+  avatarEmoji: '🦊',
+  // Dados de Score e Finanças
+  hasCompletedQuiz: true, // <--- Mude aqui para testar (true = dashboard, false = CTA)
+  score: 650,
   pointsChanged: 45,
-  btcBalance: 0.005,
+  btcBalance: 5,
 };
 
 export const mockQuickActionsData: QuickActionType[] = [

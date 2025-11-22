@@ -8,38 +8,56 @@ import { ScoreOverviewCard } from '@/components/Home/ScoreOverviewCard';
 import { PlayLearnSection } from '@/components/Home/PlayLearnSection';
 import { QuickActionsAside } from '@/components/Home/QuickActionsAside';
 import { XpCoinsWidget } from '@/components/Home/XpCoinsWidget';
+import { InitialQuizCTA } from '@/components/Home/InitialQuizCTA';
 
 // 1. Importamos os dados mockados centralizados
 import { mockUserData, mockQuickActionsData } from './mockData';
 
 export default function HomePage() {
-  // Removemos a definição local de 'userData' que estava aqui
+  // Lógica: Se NÃO completou o quiz, mostra o CTA.
+  const showQuizCTA = !mockUserData.hasCompletedQuiz;
 
   return (
     <S.LayoutContainer>
       <Sidebar />
 
       <S.MainContentArea>
-        {/* Usando dados do mockUserData */}
-        <UserProfileHeader currentXP={1000} level={3} nextLevelXP={3000} streakDays={7} title='Lucas Mena' />
-
-        {/* Usando o saldo do mockUserData */}
-        <XpCoinsWidget balanceBtc={mockUserData.btcBalance} />
-        
-        <ScoreOverviewCard 
-          score={mockUserData.score} 
-          pointsChanged={mockUserData.pointsChanged}
+        {/* O Header agora usa todos os dados do mockUserData */}
+        <UserProfileHeader
           level={mockUserData.level}
-          levelTitle={mockUserData.levelTitle}
+          title={mockUserData.title}
+          currentXP={mockUserData.currentXP}
+          nextLevelXP={mockUserData.nextLevelXP}
+          streakDays={mockUserData.streakDays}
+          avatarEmoji={mockUserData.avatarEmoji}
         />
 
-        {/* Nota: O PlayLearnSection também deveria receber dados via props no futuro */}
+        <XpCoinsWidget balanceBtc={mockUserData.btcBalance} />
+
+        {/* RENDERIZAÇÃO CONDICIONAL DO CONTEÚDO PRINCIPAL */}
+        {showQuizCTA ? (
+          // CENÁRIO 1: Usuário NOVO (Não fez o quiz)
+          // Mostra o CTA para incentivar a ação inicial
+          <InitialQuizCTA />
+        ) : (
+          // CENÁRIO 2: Usuário VETERANO (Já tem score)
+          // Mostra o dashboard com Score, Moedas e Jogos
+
+          <ScoreOverviewCard 
+            score={mockUserData.score} 
+            pointsChanged={mockUserData.pointsChanged}
+            level={mockUserData.level}
+            levelTitle={mockUserData.title} // Usando o mesmo título do header
+          />
+
+        )}
+        {/* FIM DA RENDERIZAÇÃO CONDICIONAL */}
         <PlayLearnSection />
 
       </S.MainContentArea>
 
       <S.RightAsideArea>
-        {/* 2. Passamos os dados das ações via prop 'actions' */}
+        {/* As ações rápidas laterais podem continuar aparecendo */}
         <QuickActionsAside actions={mockQuickActionsData} />
       </S.RightAsideArea>
     </S.LayoutContainer>

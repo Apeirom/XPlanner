@@ -2,18 +2,12 @@
 
 import styled from 'styled-components';
 
-export const ListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem 2rem 2rem 2rem;
-`;
-
-interface TrilhaCardProps {
+interface CardContainerProps {
   $gradient: string;
 }
 
-export const TrilhaCard = styled.button<TrilhaCardProps>`
+// Renomeei de TrilhaCard para CardContainer para não confundir com o nome do componente React
+export const CardContainer = styled.button<CardContainerProps>`
   width: 100%;
   text-align: left;
   /* Usa o gradiente passado via prop */
