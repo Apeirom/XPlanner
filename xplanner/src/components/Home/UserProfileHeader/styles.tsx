@@ -1,9 +1,66 @@
-// src/components/Home/UserProfileHeader/styles.ts
 'use client';
 
-import styled from 'styled-components';
-// Importando o componente de progresso customizado que criamos na pasta ao lado
+import styled, { keyframes, css } from 'styled-components';
 import { Progress as CustomProgress } from '../Progress';
+
+// --- ANIMAÇÃO DE CARREGAMENTO (SHIMMER) ---
+const shimmerAnimation = keyframes`
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+`;
+
+// Mixin CSS reutilizável para aplicar o efeito de esqueleto
+const skeletonStyle = css`
+  /* Usa cores do tema para o fundo base e o brilho que passa */
+  background: linear-gradient(
+    90deg,
+    var(--muted) 25%,           /* Cor base escura */
+    var(--border) 50%,          /* Cor do brilho (um pouco mais clara) */
+    var(--muted) 75%            /* Volta para a cor base */
+  );
+  background-size: 200% 100%;
+  animation: ${shimmerAnimation} 1.5s infinite linear;
+  border-radius: var(--radius-md);
+  border: none; // Remove bordas se houver
+  box-shadow: none; // Remove sombras se houver
+`;
+
+// --- COMPONENTES ESQUELETO ESPECÍFICOS ---
+
+// Substituto para o AvatarContainer
+export const SkeletonAvatar = styled.div`
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--radius-xl);
+  ${skeletonStyle}
+`;
+
+// Substituto genérico para linhas de texto
+export const SkeletonTextLine = styled.div<{ $width?: string; $height?: string }>`
+  width: ${({ $width }) => $width || '100%'};
+  height: ${({ $height }) => $height || '1rem'};
+  ${skeletonStyle}
+  margin-bottom: 0.5rem; // Espaçamento padrão
+`;
+
+// Substituto para o StreakBadge
+export const SkeletonBadge = styled.div`
+  width: 4rem;
+  height: 2rem;
+  border-radius: var(--radius-lg);
+  ${skeletonStyle}
+`;
+
+// Substituto para a barra de progresso inteira
+export const SkeletonProgressBar = styled.div`
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 9999px;
+  ${skeletonStyle}
+`;
+
+// --- FIM DOS ESQUELETOS ---
+
 
 export const Container = styled.div`
   /* Fundo com gradiente sutil para destacar o header */
