@@ -4,8 +4,8 @@
 import { Sidebar } from '@/components/Sidebar';
 import { GoalDetailMain } from '@/components/Goals/GoalDetailMain';
 import { LearnMoreAside } from '@/components/Goals/LearnMoreAside';
-// Importando os dados mockados e centralizados
-import { mockGoalData, mockArticlesData } from './mockData';
+// Importando o array de metas (mockGoals)
+import { mockGoals, mockArticlesData } from './mockData';
 import * as S from './styles';
 
 export default function MetasPage() {
@@ -19,12 +19,17 @@ export default function MetasPage() {
           <S.Subtitle>Cada meta tem seu próprio plano de investimento e poupança.</S.Subtitle>
         </S.PageHeader>
         
-        {/* Passando os dados da meta via prop 'data' */}
-        <GoalDetailMain data={mockGoalData} />
+        {/* Fazendo o loop sobre o array de metas */}
+        {mockGoals.map((goal) => (
+          <GoalDetailMain 
+            key={goal.id} // Usando o ID como key
+            data={goal}   // Passando os dados da meta atual
+          />
+        ))}
+
       </S.MainContentArea>
 
       <S.RightAsideArea>
-        {/* Passando os dados dos artigos via prop 'articles' */}
         <LearnMoreAside articles={mockArticlesData} />
       </S.RightAsideArea>
     </S.PageContainer>

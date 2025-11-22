@@ -7,7 +7,7 @@ interface XpCoinsWidgetProps {
   balanceBtc?: number;
 }
 
-export function XpCoinsWidget({ balanceBtc = 0.00 }: XpCoinsWidgetProps) {
+export function XpCoinsWidget({ balanceBtc = 0 }: XpCoinsWidgetProps) {
   return (
     <S.Container>
       <S.WidgetContent>
@@ -17,7 +17,7 @@ export function XpCoinsWidget({ balanceBtc = 0.00 }: XpCoinsWidgetProps) {
           </S.CoinIconWrapper>
           <div>
             <S.Label>XP Coins Virtual</S.Label>
-            <S.Balance>{balanceBtc} BTC</S.Balance>
+            <S.Balance>{balanceBtc} XPC</S.Balance>
           </div>
         </S.CoinInfo>
         <Zap className="w-5 h-5 text-amber-500" />

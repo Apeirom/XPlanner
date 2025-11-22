@@ -1,26 +1,45 @@
 // src/components/Goals/GoalDetailMain/index.tsx
 'use client';
 
-import { Plane, TrendingUp, ExternalLink } from 'lucide-react';
-// Importando o tipo dos dados
+// 1. Importe useState e useEffect
+import { useState, useEffect, ComponentType } from 'react';
+import { Plane, Home, Car, TrendingUp, ExternalLink } from 'lucide-react';
 import { GoalDataType } from '@/app/metas/mockData';
 import * as S from './styles';
 
-// Definindo a interface das Props do componente
 interface GoalDetailMainProps {
   data: GoalDataType;
 }
 
-// O componente agora recebe 'data' como prop
+// Mapeamento estático de ícones fora do componente para evitar criar componentes durante render
+const ICON_MAP: Record<GoalDataType['icon'], ComponentType<Record<string, unknown>>> = {
+  home: Home,
+  car: Car,
+  plane: Plane,
+};
+
 export function GoalDetailMain({ data }: GoalDetailMainProps) {
-  // Removemos a definição interna de goalData e usamos 'data' diretamente
+  // 2. Estado local para a animação da barra de progresso
+  const [animatedProgress, setAnimatedProgress] = useState(0);
+
+  // 3. Effect para disparar a animação
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedProgress(data.progress);
+    }, 100); // Pequeno delay
+
+    return () => clearTimeout(timer);
+  }, [data.progress]);
+
+  const IconComponent = ICON_MAP[data.icon] || Plane;
 
   return (
     <S.Container>
       {/* Cabeçalho da Meta */}
       <S.Header>
         <S.IconWrapper>
-          <Plane className="icon" />
+          {/* Usando o ícone dinâmico */}
+          <IconComponent className="icon" />
         </S.IconWrapper>
         <S.HeaderInfo>
           <S.GoalTitle>{data.title}</S.GoalTitle>
@@ -39,21 +58,21 @@ export function GoalDetailMain({ data }: GoalDetailMainProps) {
       {/* Seção de Progresso */}
       <S.ProgressSection>
         <S.ProgressMeta>
-          <span>{data.progress}% completo</span>
+          <span>{data.progress.toFixed(1)}% completo</span> {/* Arredondei para 1 casa decimal */}
           <span>em {data.monthsLeft} meses</span>
         </S.ProgressMeta>
         <S.ProgressBarBg>
-          <S.ProgressBarFill $percentage={data.progress} />
+          {/* 4. Usando o estado ANIMADO aqui */}
+          <S.ProgressBarFill $percentage={animatedProgress} />
         </S.ProgressBarBg>
       </S.ProgressSection>
 
-      {/* Recomendação de Depósito */}
+      {/* ... (Restante do componente permanece igual, usando 'data') ... */}
       <S.RecommendationBox>
         <S.RecommendationText>Depósito mensal recomendado</S.RecommendationText>
         <S.RecommendationValue>R$ {data.recommendedDeposit.toLocaleString('pt-BR')}</S.RecommendationValue>
       </S.RecommendationBox>
 
-      {/* Estratégia Sugerida */}
       <S.Section>
         <S.SectionTitle>Estratégia Sugerida</S.SectionTitle>
         <S.StrategyTagsWrapper>
@@ -65,7 +84,6 @@ export function GoalDetailMain({ data }: GoalDetailMainProps) {
         </S.StrategyTagsWrapper>
       </S.Section>
 
-      {/* Produtos Recomendados */}
       <S.Section>
         <S.SectionHeaderDisplay>
           <S.SectionTitle>Produtos XP Recomendados</S.SectionTitle>

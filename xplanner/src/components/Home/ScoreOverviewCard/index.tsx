@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import Link from 'next/link'; // Importando o Link do Next.js
 import * as S from './styles';
 
 interface ScoreOverviewCardProps {
@@ -8,6 +10,7 @@ interface ScoreOverviewCardProps {
   pointsChanged: number;
   level: number;
   levelTitle: string;
+  linkTo?: string; // 1. Nova prop opcional para navegação
 }
 
 export function ScoreOverviewCard({
@@ -16,16 +19,35 @@ export function ScoreOverviewCard({
   pointsChanged,
   level,
   levelTitle,
+  linkTo, // Recebendo a nova prop
 }: ScoreOverviewCardProps) {
-  const percentage = (score / maxScore) * 100;
-  
-  // Cálculos para o SVG circular
+  // Constantes geométricas (podem ficar fora ou dentro, como não mudam, aqui está ok)
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
-  return (
-    <S.CardContainer>
+  // 3. Estado para controlar a animação do offset
+  // Inicializa com a circunferência total (círculo vazio)
+  const [animatedOffset, setAnimatedOffset] = useState(circumference);
+
+  // 3. Effect para disparar a animação quando o score mudar ou o componente montar
+  useEffect(() => {
+    const percentage = (score / maxScore) * 100;
+    // Calcula o offset final baseado no score real
+    const targetOffset = circumference - (percentage / 100) * circumference;
+
+    // Um pequeno timeout garante que o navegador renderize o estado inicial (vazio)
+    // antes de aplicar o novo estado, permitindo que a transição CSS ocorra.
+    const timer = setTimeout(() => {
+      setAnimatedOffset(targetOffset);
+    }, 100); // 100ms é suficiente
+
+    return () => clearTimeout(timer);
+  }, [score, maxScore, circumference]);
+
+  // O conteúdo principal do card
+  const CardContent = (
+    // Passamos a prop $isClickable para estilizar o hover se houver link
+    <S.CardContainer $isClickable={!!linkTo}>
       <S.CircularProgressWrapper>
         <svg width="200" height="200" viewBox="0 0 200 200">
           {/* Círculo de fundo (trilha escura) */}
@@ -52,7 +74,8 @@ export function ScoreOverviewCard({
             stroke="url(#xpGradient)"
             strokeWidth="12"
             strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
+            // 3. Usamos o estado animado aqui em vez do cálculo direto
+            strokeDashoffset={animatedOffset}
             strokeLinecap="round"
           />
         </svg>
@@ -63,20 +86,32 @@ export function ScoreOverviewCard({
       </S.CircularProgressWrapper>
 
       <S.InfoContent>
-        {/* Título traduzido */}
         <S.Title>Score de Saúde Financeira</S.Title>
-        {/* Descrição traduzida */}
         <S.Description>
           Sua pontuação geral baseada em dívidas, orçamento, reserva de emergência e investimentos.
         </S.Description>
 
         <S.TagsWrapper>
-          {/* Tag de pontos traduzida */}
           <S.PointsTag>+{pointsChanged} pontos este mês</S.PointsTag>
-          {/* Tag de nível traduzida */}
           <S.LevelTag>Nível {level} · {levelTitle}</S.LevelTag>
         </S.TagsWrapper>
       </S.InfoContent>
     </S.CardContainer>
   );
+
+  // 1. Lógica condicional para envolver com Link se 'linkTo' existir
+  if (linkTo) {
+    // Usamos passHref e envolvemos o container estilizado
+    // O Next/Link a partir da versão 13 já renderiza um <a> por padrão,
+    // então precisamos garantir que nossos estilos não quebrem isso.
+    return (
+        // O styled-component CardContainer será renderizado dentro do <a> do Link
+        // Precisamos garantir no styles.ts que ele se comporte bem.
+        <Link href={linkTo} style={{ textDecoration: 'none', display: 'block' }}>
+            {CardContent}
+        </Link>
+    );
+  }
+
+  return CardContent;
 }
