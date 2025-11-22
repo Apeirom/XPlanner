@@ -3,49 +3,44 @@
 
 import * as S from './styles';
 import { Sidebar } from '@/components/Sidebar';
-import { HomeHeader } from '@/components/Home/HomeHeader';
+import { UserProfileHeader } from '@/components/Home/UserProfileHeader';
 import { ScoreOverviewCard } from '@/components/Home/ScoreOverviewCard';
 import { PlayLearnSection } from '@/components/Home/PlayLearnSection';
 import { QuickActionsAside } from '@/components/Home/QuickActionsAside';
 import { XpCoinsWidget } from '@/components/Home/XpCoinsWidget';
 
+// 1. Importamos os dados mockados centralizados
+import { mockUserData, mockQuickActionsData } from './mockData';
+
 export default function HomePage() {
-  // Dados mockados para exemplo
-  const userData = {
-    name: 'João',
-    score: 685,
-    level: 4,
-    levelTitle: 'Money Rookie',
-    pointsChanged: 45,
-  };
+  // Removemos a definição local de 'userData' que estava aqui
 
   return (
     <S.LayoutContainer>
-      {/* Coluna 1: Sidebar Existente */}
       <Sidebar />
 
-      {/* Coluna 2: Conteúdo Central */}
       <S.MainContentArea>
-        <HomeHeader userName={userData.name} />
+        {/* Usando dados do mockUserData */}
+        <UserProfileHeader currentXP={1000} level={3} nextLevelXP={3000} streakDays={7} title='Lucas Mena' />
 
-        <XpCoinsWidget balanceBtc={0.005} />
+        {/* Usando o saldo do mockUserData */}
+        <XpCoinsWidget balanceBtc={mockUserData.btcBalance} />
         
         <ScoreOverviewCard 
-          score={userData.score} 
-          pointsChanged={userData.pointsChanged}
-          level={userData.level}
-          levelTitle={userData.levelTitle}
+          score={mockUserData.score} 
+          pointsChanged={mockUserData.pointsChanged}
+          level={mockUserData.level}
+          levelTitle={mockUserData.levelTitle}
         />
 
+        {/* Nota: O PlayLearnSection também deveria receber dados via props no futuro */}
         <PlayLearnSection />
 
-        {/* Espaço para os futuros componentes de Dimensões e Metas */}
-        {/* <DimensionsGrid ... /> */}
       </S.MainContentArea>
 
-      {/* Coluna 3: Barra Lateral Direita */}
       <S.RightAsideArea>
-        <QuickActionsAside />
+        {/* 2. Passamos os dados das ações via prop 'actions' */}
+        <QuickActionsAside actions={mockQuickActionsData} />
       </S.RightAsideArea>
     </S.LayoutContainer>
   );
