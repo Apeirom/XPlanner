@@ -12,7 +12,7 @@ export interface UserDataType {
   streakDays: number;
   avatarEmoji: string;
   // Dados de Score e Finanças
-  hasCompletedQuiz: boolean; // <-- NOVA FLAG IMPORTANTE
+  hasCompletedQuiz: boolean; 
   score: number;
   pointsChanged: number;
   btcBalance: number;
