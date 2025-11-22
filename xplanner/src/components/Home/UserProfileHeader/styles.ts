@@ -1,13 +1,16 @@
+// src/components/Home/UserProfileHeader/styles.ts
 'use client';
 
 import styled from 'styled-components';
-import { Progress as ShadcnProgress } from '@/components/ui/progress'; // Importe o componente base
+// Importando o componente de progresso customizado que criamos na pasta ao lado
+import { Progress as CustomProgress } from '../Progress';
 
 export const Container = styled.div`
   /* Fundo com gradiente sutil para destacar o header */
   background: linear-gradient(to bottom, #121214, #0c0c0e);
   padding: 3rem 1.5rem 2rem;
   border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-xl);
 `;
 
 export const HeaderContent = styled.div`
@@ -112,15 +115,14 @@ export const ProgressLabels = styled.div`
   }
 `;
 
-// Estilizando o componente Progress do shadcn/ui
-export const StyledProgress = styled(ShadcnProgress)`
-  height: 0.5rem;
-  background-color: var(--muted); // Cor de fundo da barra
+// Estilizando o NOSSO componente Progress customizado
+export const StyledProgress = styled(CustomProgress)`
+  /* A altura e o fundo da trilha já são definidos no componente base (../Progress/styles.ts),
+     mas podemos sobrescrever aqui se necessário. */
   
-  /* Acessa a parte interna da barra de progresso para mudar a cor */
+  /* Acessa o indicador interno (a barra colorida) para aplicar o gradiente específico deste header */
   > div {
-    /* Gradiente para a barra de progresso */
+    /* Gradiente Roxo -> Laranja para o header */
     background: linear-gradient(to right, #a855f7, #f59e0b);
-    border-radius: 9999px;
   }
 `;

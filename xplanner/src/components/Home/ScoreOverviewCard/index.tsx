@@ -63,14 +63,18 @@ export function ScoreOverviewCard({
       </S.CircularProgressWrapper>
 
       <S.InfoContent>
-        <S.Title>Financial Health Score</S.Title>
+        {/* Título traduzido */}
+        <S.Title>Score de Saúde Financeira</S.Title>
+        {/* Descrição traduzida */}
         <S.Description>
-          Your overall score based on debts, budget, emergency fund and investments.
+          Sua pontuação geral baseada em dívidas, orçamento, reserva de emergência e investimentos.
         </S.Description>
 
         <S.TagsWrapper>
-          <S.PointsTag>+{pointsChanged} points this month</S.PointsTag>
-          <S.LevelTag>Level {level} · {levelTitle}</S.LevelTag>
+          {/* Tag de pontos traduzida */}
+          <S.PointsTag>+{pointsChanged} pontos este mês</S.PointsTag>
+          {/* Tag de nível traduzida */}
+          <S.LevelTag>Nível {level} · {levelTitle}</S.LevelTag>
         </S.TagsWrapper>
       </S.InfoContent>
     </S.CardContainer>

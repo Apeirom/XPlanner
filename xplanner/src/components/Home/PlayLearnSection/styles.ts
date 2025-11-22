@@ -1,10 +1,12 @@
+// src/components/Home/PlayLearnSection/styles.ts
 'use client';
 
 import styled, { css } from 'styled-components';
 
-// Container principal da seção (fundo escuro sólido nas bordas)
+// ... (SectionContainer, Header, HeaderTitle, XpTag, Description, GamesGrid permanecem iguais) ...
+
 export const SectionContainer = styled.section`
-  background-color: #09090b; // Um tom quase preto sólido para destacar essa área
+  background-color: #09090b;
   border-radius: 1.5rem;
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -54,27 +56,38 @@ interface VariantProps {
   $variant: 'gold' | 'blue';
 }
 
+// --- MUDANÇA AQUI ---
 export const GameCard = styled.div<VariantProps>`
   border-radius: 1.25rem;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  cursor: pointer; /* Adiciona cursor de mão para indicar interatividade */
   
+  /* Adiciona transição suave para o hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Efeito de Hover: Aumenta levemente e adiciona sombra */
+  &:hover {
+    transform: scale(1.03); /* Aumenta 3% */
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+  }
+
   /* Estilos condicionais baseados na variante */
   ${({ $variant }) =>
     $variant === 'gold'
       ? css`
-          // Gradiente Dourado XP
           background: linear-gradient(135deg, #FF9900 0%, #FFC700 100%);
-          color: black; // Texto preto no fundo dourado
+          color: black;
         `
       : css`
-          // Gradiente Azul/Roxo Escuro
           background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
-          color: white; // Texto branco no fundo azul
+          color: white;
         `}
 `;
+// ---------------------
 
+// ... (CardHeader, IconWrapper, TypeBadge, GameTitle, GameDescription, PlayButton permanecem iguais) ...
 export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -126,7 +139,7 @@ export const GameDescription = styled.p`
   font-size: 0.875rem;
   line-height: 1.4;
   margin-bottom: 1.5rem;
-  flex: 1; // Garante que os botões fiquem alinhados no final
+  flex: 1;
   opacity: 0.9;
 `;
 
@@ -152,7 +165,8 @@ export const PlayButton = styled.button<VariantProps>`
     transition: transform 0.2s ease;
   }
 
-  &:hover .arrow {
+  /* O hover do card já ativa o hover do botão */
+  ${GameCard}:hover .arrow {
     transform: translateX(4px);
   }
 `;
