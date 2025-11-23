@@ -1,96 +1,117 @@
-// --- Tipos para a funcionalidade de Desafios ---
-// Define a estrutura básica de um desafio (usado para tipagem e mock dos componentes)
+// src/app/desafios/mockData.ts
 
-export type ChallengeType = "DAILY" | "WEEKLY" | "MONTHLY";
-
-export interface UserChallengeProgress {
-  id: string;
-  userXPId: string; // FK para UserXP.id
-  challengeId: string; // FK para Challenge.id
-  startDate: string;
-  endDate: string;
-  currentProgress: number; // 0 - 100
-  isCompleted: boolean; // true => desafio concluído
-  completedAt?: string;
-}
-
+// Definindo tipos baseados nas suas classes para uso no frontend
 export interface Challenge {
   id: string;
   title: string;
   description: string;
-  challengeType: ChallengeType;
-  durationDays: number;
-  xpPointsReward: number; // XP ganho ao completar
-  xpCoinsReward?: number; // BTC ganho (padrão em fração, ex: 0.0001)
-  badgeId?: string; // FK para Badge.id
-  iconUrl: string;
-  userProgress?: UserChallengeProgress[];
+  challengeType: 'DAILY' | 'WEEKLY' | 'MONTHLY';
+  durationDays: number; // Total a ser alcançado
+  xpPointsReward: number;
+  xpCoinsReward?: number;
+  iconUrl: string; // Pode ser um emoji ou URL
+  // Simulação do progresso do usuário para este desafio
+  userProgress?: {
+    currentProgress: number;
+    isCompleted: boolean;
+    isClaimed: boolean; // Campo adicional para controle de UI (reivindicado)
+  };
 }
 
-// --- Mock genérico de desafios (Diários / Semanais) para progresso do usuário 
-// Usado apenas localmente para popular a interface até integrar com backend
+// --- MOCK DATA (Adaptado) ---
 
-const generateProgress = (challengeId: string, completed = false): UserChallengeProgress[] => {
-  return [
-    {
-      id: `${challengeId}-progress`,
-      userXPId: "user-001",
-      challengeId,
-      startDate: "2025-01-01",
-      endDate: "2025-12-31",
-      currentProgress: completed ? 100 : Math.floor(Math.random() * 100),
-      isCompleted: completed,
-      completedAt: completed ? "2025-02-15" : undefined
-    }
-  ];
-};
-
-export const dailyChallenges: Challenge[] = [
+export const dailyChallengesMock: Challenge[] = [
   {
-    id: "d1",
-    title: "Registrar despesas de hoje",
-    description: "Anote seus gastos para manter o controle diário.",
-    challengeType: "DAILY",
+    id: 'd1',
+    title: 'Login Streak',
+    description: 'Entre no app hoje',
+    challengeType: 'DAILY',
     durationDays: 1,
-    xpPointsReward: 40,
-    xpCoinsReward: 5,
-    iconUrl: "/icons/fire.png",
-    userProgress: generateProgress("d1", false)
+    xpPointsReward: 50,
+    xpCoinsReward: 0.0001,
+    iconUrl: '🔥',
+    userProgress: {
+      currentProgress: 1,
+      isCompleted: true,
+      isClaimed: false,
+    },
   },
   {
-    id: "d2",
-    title: "Ler um artigo financeiro",
-    description: "Escolha um artigo da área de investimentos.",
-    challengeType: "DAILY",
+    id: 'd2',
+    title: 'Quiz do Dia',
+    description: 'Complete um quiz de finanças',
+    challengeType: 'DAILY',
     durationDays: 1,
-    xpPointsReward: 25,
-    xpCoinsReward: 3,
-    iconUrl: "/icons/book.png",
-    userProgress: generateProgress("d2", true)
-  }
+    xpPointsReward: 100,
+    xpCoinsReward: 0.0002,
+    iconUrl: '🎯',
+    userProgress: {
+      currentProgress: 1,
+      isCompleted: true,
+      isClaimed: false,
+    },
+  },
+  {
+    id: 'd3',
+    title: 'Atualize o Orçamento',
+    description: 'Registre uma transação',
+    challengeType: 'DAILY',
+    durationDays: 1,
+    xpPointsReward: 75,
+    xpCoinsReward: 0.0001,
+    iconUrl: '💰',
+    userProgress: {
+      currentProgress: 0,
+      isCompleted: false,
+      isClaimed: false,
+    },
+  },
 ];
 
-export const weeklyChallenges: Challenge[] = [
+export const weeklyChallengesMock: Challenge[] = [
   {
-    id: "w1",
-    title: "Atualizar seu score financeiro",
-    description: "Refaça o quiz semanal e ganhe XP extra.",
-    challengeType: "WEEKLY",
+    id: 'w1',
+    title: '7 Dias Sem Delivery',
+    description: 'Cozinhe em casa todos os dias',
+    challengeType: 'WEEKLY',
     durationDays: 7,
-    xpPointsReward: 120,
-    xpCoinsReward: 15,
-    iconUrl: "/icons/trophy.png",
-    userProgress: generateProgress("w1", false)
+    xpPointsReward: 500,
+    xpCoinsReward: 0.001,
+    iconUrl: '🍳',
+    userProgress: {
+      currentProgress: 7,
+      isCompleted: true,
+      isClaimed: false,
+    },
   },
   {
-    id: "w2",
-    title: "Reduzir gastos em uma categoria",
-    description: "Escolha uma categoria e reduza ao menos 10%.",
-    challengeType: "WEEKLY",
-    durationDays: 7,
-    xpPointsReward: 80,
-    xpCoinsReward: 10,
-    iconUrl: "/icons/chart.png",
-    userProgress: generateProgress("w2", false)
-  }
+    id: 'w2',
+    title: 'Complete 3 Trilhas',
+    description: 'Finalize 3 passos de trilhas',
+    challengeType: 'WEEKLY',
+    durationDays: 3,
+    xpPointsReward: 300,
+    xpCoinsReward: 0.0005,
+    iconUrl: '📚',
+    userProgress: {
+      currentProgress: 2,
+      isCompleted: false,
+      isClaimed: false,
+    },
+  },
+  {
+    id: 'w3',
+    title: 'Meta Semanal',
+    description: 'Adicione R$100 a uma meta',
+    challengeType: 'WEEKLY',
+    durationDays: 3,
+    xpPointsReward: 400,
+    xpCoinsReward: 0.0008,
+    iconUrl: '🎯',
+    userProgress: {
+      currentProgress: 3,
+      isCompleted: true,
+      isClaimed: false,
+    },
+  },
 ];
