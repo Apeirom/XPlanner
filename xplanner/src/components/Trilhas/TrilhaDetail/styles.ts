@@ -11,7 +11,7 @@ export const Container = styled.div`
 // --- Estilos do Cabeçalho ---
 export const DetailHeader = styled.div<{ $gradient: string }>`
   background: ${({ $gradient }) => $gradient};
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   color: white;
   position: relative;
   overflow: hidden;

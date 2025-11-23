@@ -91,7 +91,7 @@ export function ChallengeCard({ data, onClaim }: ChallengeCardProps) {
           </S.RewardItem>
           {data.xpCoinsReward && (
             <S.RewardItem>
-              <S.RewardIcon $type="coin">₿</S.RewardIcon>
+              <S.RewardIcon $type="coin">XPC</S.RewardIcon>
               <S.RewardValue>+{data.xpCoinsReward}</S.RewardValue>
             </S.RewardItem>
           )}
