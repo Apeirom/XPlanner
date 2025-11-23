@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react'; // Importe useEffect
+import { useState } from 'react'; // Importe useEffect
 import { Sidebar } from '@/components/Sidebar';
 import { SkipForward, SquareStack, HandCoins, CheckCircle } from 'lucide-react';
 import { millionaireQuestions } from './mockData';
@@ -33,14 +33,7 @@ export default function MillionaireGamePage() {
   const prizeToStop = accumulatedPrize;
   const prizeIfWrong = accumulatedPrize > 0 ? Math.floor(accumulatedPrize * 0.1) : 0; 
 
-  // --- EFEITOS ---
-  // Reseta as opções eliminadas quando muda de pergunta
-  useEffect(() => {
-    setEliminatedOptions([]);
-  }, [currentQuestionIndex]);
-
   // --- FUNÇÕES DE LÓGICA ---
-
   const handleOptionSelect = (index: number) => {
     // Impede selecionar se já confirmou, se o jogo não está rolando OU SE A OPÇÃO FOI ELIMINADA
     if (isAnswerConfirmed || gameState !== 'playing' || eliminatedOptions.includes(index)) return;
@@ -62,6 +55,7 @@ export default function MillionaireGamePage() {
         } else {
           setAccumulatedPrize(prizeToWin);
           setCurrentQuestionIndex(prev => prev + 1);
+          setEliminatedOptions([]);
           setSelectedOption(null);
           setIsAnswerConfirmed(false);
         }
@@ -82,6 +76,7 @@ export default function MillionaireGamePage() {
     if (hasUsedSkip || isAnswerConfirmed || isLastQuestion) return;
     setHasUsedSkip(true);
     setCurrentQuestionIndex(prev => prev + 1);
+    setEliminatedOptions([]);
     setSelectedOption(null);
   };
 
