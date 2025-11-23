@@ -11,13 +11,19 @@ export const PageContainer = styled.div`
 `;
 
 export const ContentArea = styled.main`
-  padding: 2rem;
   overflow-y: auto;
   height: 100vh;
 `;
 
+export const ListContentWrapper = styled.div`
+  padding: 2rem; // O padding de 2rem vive aqui agora.
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; // Espaço entre o header da pagina e a lista de cards
+`;
+
 export const Header = styled.header`
-  margin-bottom: 2.5rem;
+  /* margin-bottom: 2.5rem; */
 `;
 
 export const Title = styled.h1`
