@@ -135,7 +135,7 @@ export const OptionsGrid = styled.div`
 
 // Estado do botão de opção
 interface OptionButtonProps {
-  $state: 'default' | 'selected' | 'correct' | 'wrong';
+  $state: 'default' | 'selected' | 'correct' | 'wrong' | 'disabled';
 }
 
 export const OptionButton = styled.button<OptionButtonProps>`
