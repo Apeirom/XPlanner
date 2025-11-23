@@ -25,8 +25,8 @@ export function Sidebar() {
         <Image
           src="/assets/logo-xplanner.png" // Usando sua logo
           alt="XPlanner Logo"
-          width={150}
-          height={60}
+          width={210}
+          height={84}
           priority
         />
       </S.SidebarHeader>

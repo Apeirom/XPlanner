@@ -79,8 +79,8 @@ export const weeklyChallengesMock: Challenge[] = [
     xpCoinsReward: 0.001,
     iconUrl: '🍳',
     userProgress: {
-      currentProgress: 7,
-      isCompleted: true,
+      currentProgress: 4,
+      isCompleted: false,
       isClaimed: false,
     },
   },

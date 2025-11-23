@@ -1,8 +1,8 @@
+// src/app/trilhas/page.tsx
 'use client';
 
 import { useState } from 'react';
 import { Sidebar } from '@/components/Sidebar';
-// Importamos o Card individual agora, não a Lista
 import { TrilhaCard } from '@/components/Trilhas/TrilhaCard';
 import { TrilhaDetail } from '@/components/Trilhas/TrilhaDetail';
 import { mockTrilhas } from './mockData';
@@ -19,22 +19,27 @@ export default function TrilhasPage() {
     <S.PageContainer>
       <Sidebar />
       
+      {/* ContentArea agora não tem padding */}
       <S.ContentArea>
+        
         {selectedTrilhaData ? (
+          // --- CENÁRIO 1: DETALHE ABERTO ---
+          // O TrilhaDetail é renderizado diretamente no ContentArea sem padding.
+          // O header dele vai encostar nas bordas.
           <TrilhaDetail 
             trilha={selectedTrilhaData} 
             onBack={() => setSelectedTrilhaId(null)} 
           />
         ) : (
-          <>
+          // --- CENÁRIO 2: LISTA ABERTA ---
+          // Envolvemos o conteúdo da lista no novo wrapper que TEM padding.
+          <S.ListContentWrapper>
             <S.Header>
               <S.Title>Trilhas de Conhecimento</S.Title>
               <S.Subtitle>Escolha sua jornada de aprendizado e ganhe XP.</S.Subtitle>
             </S.Header>
             
-            {/* Container para a lista de cards */}
             <S.CardsListContainer>
-              {/* O .map() acontece diretamente aqui na página */}
               {mockTrilhas.map((trilha) => (
                 <TrilhaCard 
                   key={trilha.id}
@@ -43,9 +48,10 @@ export default function TrilhasPage() {
                 />
               ))}
             </S.CardsListContainer>
-          </>
+          </S.ListContentWrapper>
         )}
+
       </S.ContentArea>
     </S.PageContainer>
   );
-}
+} 
