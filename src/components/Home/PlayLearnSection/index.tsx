@@ -22,7 +22,7 @@ export function PlayLearnSection() {
 
       <S.GamesGrid>
         {/* Card do Jogo 1: Milionário do Dinheiro */}
-        <Link href="/games/millionaire" style={{ textDecoration: 'none', display: 'block' }}>
+        <Link href="/millionaire" style={{ textDecoration: 'none', display: 'block' }}>
           <S.GameCard $variant="gold">
             <S.CardHeader>
               <S.IconWrapper $variant="gold">
@@ -41,7 +41,7 @@ export function PlayLearnSection() {
         </Link>
 
         {/* Card do Jogo 2: Batalha de Quiz */}
-        <Link href="/games/quiz-battle" style={{ textDecoration: 'none', display: 'block' }}>
+        <Link href="/quiz-battle" style={{ textDecoration: 'none', display: 'block' }}>
           <S.GameCard $variant="blue">
             <S.CardHeader>
               <S.IconWrapper $variant="blue">
