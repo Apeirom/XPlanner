@@ -24,7 +24,7 @@ export const SidebarContainer = styled.aside`
 `;
 
 export const SidebarHeader = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   
