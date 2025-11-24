@@ -4,7 +4,7 @@
 import * as S from './styles';
 import { Sidebar } from '@/components/Sidebar';
 import { UserProfileHeader } from '@/components/Home/UserProfileHeader';
-import { ScoreOverviewCard } from '@/components/Home/ScoreOverviewCard';
+import { ScoreOverviewCard } from '@/components/ScoreOverviewCard';
 import { PlayLearnSection } from '@/components/Home/PlayLearnSection';
 import { QuickActionsAside } from '@/components/Home/QuickActionsAside';
 import { XpCoinsWidget } from '@/components/Home/XpCoinsWidget';
