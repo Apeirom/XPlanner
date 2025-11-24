@@ -17,7 +17,7 @@ interface UserProfileHeaderProps {
 
 export function UserProfileHeader({
   level = 3,
-  title = 'Money Rookie',
+  title = 'Novato Financeiro',
   currentXP = 2340,
   nextLevelXP = 3000,
   streakDays = 7,
