@@ -70,7 +70,7 @@ export const userProfileMock: UserProfile = {
   id: 'u1',
   name: 'Lucas Mena',
   email: 'lucasmena@email.com',
-  title: 'Money Rookie',
+  title: 'Novato Financeiro',
   level: 3,
   totalXp: 2340,
   streakDays: 7,

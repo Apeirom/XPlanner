@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: var(--card-bg, #242424);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 24px;
-  border: 1px solid var(--border-color, #3f3f3f);
 `;
 
 export const Header = styled.div`
@@ -52,8 +52,9 @@ export const Description = styled.p`
 
 // Adicionamos o estilo do botão aqui
 export const AllocateButton = styled.button`
-  background-color: var(--primary-color, #f39c12);
-  color: #000000; // Texto preto para contraste com a cor primária (geralmente amarela/laranja)
+  
+  background: linear-gradient(90deg, #FF9900 0%, #FFC700 100%);
+  color: black;
   border: none;
   border-radius: 8px;
   padding: 12px 24px;
@@ -64,8 +65,10 @@ export const AllocateButton = styled.button`
   width: 100%; /* Ocupa toda a largura do widget */
   margin-top: 8px;
 
+  
   &:hover {
-    opacity: 0.9;
+    background: linear-gradient(90deg, #FFB84D 0%, #FFD633 100%);
+    box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
   }
 
   &:active {

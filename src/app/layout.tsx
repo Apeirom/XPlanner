@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import "./globals.css";
 import StyledComponentsRegistry from "@/lib/registry";
 
@@ -21,8 +22,8 @@ export default function RootLayout({
       <body>
         {/* <AuthProvider>  <- Descomente quando criar o AuthContext */}
           <StyledComponentsRegistry>
-            {/* Aqui é onde as páginas (page.tsx) serão renderizadas */}
             {children}
+            <Toaster position="top-center" richColors />        
           </StyledComponentsRegistry>
         {/* </AuthProvider> <- Descomente quando criar o AuthContext */}
       </body>
