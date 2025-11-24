@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: var(--card-bg, #242424);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 24px;
-  border: 1px solid var(--border-color, #3f3f3f);
   display: flex;
   flex-direction: column;
   /* Altura mínima para garantir que o gráfico tenha espaço para renderizar */

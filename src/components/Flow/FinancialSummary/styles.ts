@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: var(--card-bg, #242424);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 24px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  border: 1px solid var(--border-color, #3f3f3f);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

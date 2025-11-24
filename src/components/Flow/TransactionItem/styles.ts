@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   padding: 16px;
-  background-color: var(--card-bg, #242424);
   border-radius: 8px;
   margin-bottom: 8px;
-  border: 1px solid var(--border-color, #3f3f3f);
 `;
 
 export const Date = styled.div`
