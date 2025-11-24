@@ -2,14 +2,43 @@
 
 <div align="center">
 
-<img src="public/assets/xplanner-logo-full.png" alt="Xplanner Logo" width="300"/>
+<img src="public/assets/logo-xplanner.png" alt="Xplanner Logo" width="300"/>
 
 ### Domine sua grana. Conquiste seus sonhos.
 ### Um projeto integrado ao Ecosistema XP.
 
-[Ver Demo Online](INSIRA_SEU_LINK_DA_VERCEL_AQUI)
+[Ver Demo Online](https://x-planner.vercel.app/login)
 
 </div>
+
+---
+
+## 📦 Instalação e Execução
+
+Para rodar este projeto localmente, é necessário garantir que os **pré-requisitos** abaixo estejam atendidos.
+
+### Pré-requisitos
+
+Certifique-se de ter instalado em sua máquina:
+* **[Node.js](https://nodejs.org/)** (Versão LTS recomendada)
+* **[npm](https://www.npmjs.com/)** (Geralmente instalado automaticamente com o Node)
+
+### Como Rodar
+
+1.  **Instale as dependências do projeto:**
+    No terminal, dentro da pasta raiz do projeto, execute:
+    ```bash
+    npm install
+    ```
+
+2.  **Inicie o servidor de desenvolvimento:**
+    Após a instalação, execute o comando:
+    ```bash
+    npm run dev
+    ```
+
+3.  **Acesse a aplicação:**
+    Abra o seu navegador e acesse [http://localhost:3000](http://localhost:3000) para ver o Xplanner em ação.
 
 ---
 
@@ -41,11 +70,10 @@ Chega de conteúdo genérico. Baseado no seu Score Financeiro, a plataforma suge
 ### 4. Nudges e Gamificação 🎮
 Usamos economia comportamental para manter o usuário engajado. Receba "empurrões" (nudges) positivos para manter bons hábitos, participe de desafios como o "QuizBattle" (planejado para a Fase 2) e ganhe recompensas virtuais.
 
-
 ### 5. Analisador de Fluxo de Caixa 💸
-* Acompanhamento Detalhado: Visualize todas as suas entradas e saídas de dinheiro, com facilidade para categorizar e nomear cada transação.
-* Avaliação de Crédito: Com base no seu histórico de transações, obtenha uma análise sobre sua aptidão para tomar crédito.
-* Metas Financeiras: Defina metas e destine parte do seu saldo disponível para alcançá-las.
+* **Acompanhamento Detalhado:** Visualize todas as suas entradas e saídas de dinheiro, com facilidade para categorizar e nomear cada transação.
+* **Avaliação de Crédito:** Com base no seu histórico de transações, obtenha uma análise sobre sua aptidão para tomar crédito.
+* **Metas Financeiras:** Defina metas e destine parte do seu saldo disponível para alcançá-las.
 
 ---
 
